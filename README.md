@@ -14,5 +14,7 @@
 - BACKSPACEはselectボタン  
 また、一度ゲームを起動してからメニューにある Save -> Quicksave で同じディレクトリにセーブデータ(quicksave.gbsave)が作成されます。同様に Load -> Load save file からファイルを選ぶことでセーブデータをロードすることができます。
 
-## 実際のプレイ画像
-![プレイ](emu.png)
+## 実際のプレイ動画
+
+https://user-images.githubusercontent.com/45473854/203595317-ed6ca655-5d6a-4734-87b7-08652b44dc8f.mov
+
