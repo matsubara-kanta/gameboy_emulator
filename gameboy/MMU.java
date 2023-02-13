@@ -5,6 +5,7 @@ import java.util.Base64;
 import java.util.LinkedList;
 import java.util.List;
 
+/* メモリ */
 public class MMU implements Serializable {
     private byte[] mem = new byte[0xFFFF+1];
     private Cartridge rom;
@@ -82,7 +83,7 @@ public class MMU implements Serializable {
         return this.rom;
     }
     
-    // Load rom from disk
+    /* ロムから読み出し */ 
     public MMU(String fileName) {
         this.rom = Cartridge.fromFile(fileName);
     }
@@ -101,6 +102,7 @@ public class MMU implements Serializable {
         this.joypad = joypad;
     }
     
+    /* VRAMとのやり取り */
     public int readByteFromVRAM(int location, int bank) {
         if (location < 0x8000 || location > 0x9FFF) {
             System.out.printf("Invalid VRAM address: %x\n", location);

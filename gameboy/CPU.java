@@ -45,6 +45,7 @@ public class CPU implements Serializable {
     public static final int RELJUMP = 0;
     public static final int ABSJUMP = 1;
     
+    /* デバッグ用のダンプ */
     public void coreDump() {
         int opcode = mem.readByte(regs.PC.read());
         Operation op = operations[opcode];
@@ -61,6 +62,7 @@ public class CPU implements Serializable {
         pendingInterrupt = handle;
     }
     
+    /* 1命令を実行 */
     public void executeOneInstruction(boolean printOutput, boolean haltEnabled) {
         
         clockCycleDelta = 0;
@@ -103,12 +105,13 @@ public class CPU implements Serializable {
         }
     }
 
+    /* 命令を表すクラス(jumpを除く) */
     static class Operation{
-        String description;
-        Lambda lambda;
-        int ticks;
-        int length; 
-        String flagsAffected;
+        String description; // 命令名
+        Lambda lambda; // 処理内容をラムダ式で
+        int ticks; // かかるティック
+        int length; // 命令の長さ
+        String flagsAffected; // フラグ(Z, N, H, C)
         public Operation(String description, Lambda lambda, int length, String flagsAffected, int ticks){
             this.description = description;
             this.lambda = lambda;
@@ -243,6 +246,8 @@ public class CPU implements Serializable {
             }
         }
     }
+
+    /* 命令の処理内容 */
     
     Readable d8() {
         int value = mem.slowReadByte(regs.PC.read()+1);
@@ -384,7 +389,7 @@ public class CPU implements Serializable {
         throw new IllegalArgumentException("invalid opcode");
     }
     
-    int LD (Writable dest, Readable src){
+    int LD (Writable dest, Readable src){ // LD命令
         int val = src.read();
         
         if(dest instanceof MMU.Location && src == regs.SP){
@@ -395,7 +400,7 @@ public class CPU implements Serializable {
         return val;
     }
     
-    int PUSH(LongRegister reg) {
+    int PUSH(LongRegister reg) { 
         int sp = regs.SP.read();
         
         sp--;
@@ -921,6 +926,8 @@ public class CPU implements Serializable {
         return RET();
     }
 
+    /* 命令表を作成 */
+    
     static Operation[] operations = new Operation[256];
     {
         operations[0x0] = new Operation("NOP", CPU::NOP, 1, "- - - -", 4);

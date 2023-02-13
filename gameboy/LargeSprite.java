@@ -1,4 +1,5 @@
 
+/* 画面に表示するスプライト */
 public class LargeSprite implements ISprite {
 
     private static final long serialVersionUID = 8470993145647038974L;

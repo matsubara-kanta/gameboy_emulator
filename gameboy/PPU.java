@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.HashMap;
 
+/* PPU(GPU) */
+
+/* 下から Background, Window, Sprites というレイヤー */
 
 public class PPU implements Serializable, IPPU {
 
@@ -122,6 +125,9 @@ public class PPU implements Serializable, IPPU {
     public void toggleHBlankIndicator() {
         hBlank = false;
     }
+    
+    /* ディスプレイはlineごとに描写、H-Blankに*/
+    /* 144lineでV-Blankに */
     
     public void tick() {
         scrollX = mem.readByte(0xFF43);

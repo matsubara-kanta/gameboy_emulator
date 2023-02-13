@@ -3,6 +3,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.Serializable;
 
+/* 操作を割り当てるクラス */
 public class Joypad implements KeyListener, Serializable {
  
     private static final long serialVersionUID = 1687374353560163196L;

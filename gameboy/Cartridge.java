@@ -15,12 +15,14 @@ public interface Cartridge extends Serializable {
         }
 
         int cartridgeType = rom[0x0147] & 0xff;
+        
+        /* メモリバンク無し(テトリスとか) */
         if(cartridgeType == 0x00){
             return new Rom(rom);
-        }else if(cartridgeType < 0x04){
+        }else if(cartridgeType < 0x04){ // ゼルダとか
             return new Mbc1(rom, fileName);
         }
-        else if (cartridgeType >= 0x0F && cartridgeType <= 0x13) {
+        else if (cartridgeType >= 0x0F && cartridgeType <= 0x13) { // ポケモンとか
             return new Mbc3(rom, fileName);
         }
         else if (cartridgeType >= 0x19 && cartridgeType <= 0x1E) {

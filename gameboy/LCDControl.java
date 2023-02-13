@@ -1,6 +1,7 @@
 
 import java.io.Serializable;
 
+/* LCDC タイル単位で画面を描画 */
 public class LCDControl implements Serializable {
     
     private static final int LCDControlAddress = 0xFF40;

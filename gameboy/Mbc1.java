@@ -60,6 +60,7 @@ class Mbc1 implements Cartridge {
         }
     }
 
+    /* 読み出し */
     public int readByte(int location) {
         if(location > 0xBFFF) throw new InvalidParameterException("Out of cartridge memory");
         
@@ -75,6 +76,7 @@ class Mbc1 implements Cartridge {
         return banks[currentBank % banks.length][location - BANK_SIZE] & 0xff;
     }
 
+    /* 書き出し */
     public void writeByte(int location, int toWrite) {
         if(location >= 0x2000 && location <= 0x3fff) {
             int newBank = toWrite & 0x1f;

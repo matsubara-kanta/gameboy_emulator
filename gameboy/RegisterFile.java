@@ -96,6 +96,7 @@ class FlagRegister implements ShortRegister {
     }
 }
 
+/* レジスタ */
 public class RegisterFile implements Serializable {
 
     private static final long serialVersionUID = 1620775094696906337L;

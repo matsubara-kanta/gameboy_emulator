@@ -10,11 +10,13 @@ import java.util.List;
 import javax.sound.sampled.SourceDataLine;
 import javax.swing.*;
 
+/* GUIクラス */
 class MainMenuBar extends MenuBar {
 
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
     GameBoy gameBoy;
 
+    /* メニューバー */
     public MainMenuBar(GameBoy gb) {
     
         this.gameBoy = gb;
@@ -39,6 +41,7 @@ class MainMenuBar extends MenuBar {
             gameBoy.start();
         });
         
+        /* セーブデータのロード */
         MenuItem quickSave = new MenuItem("Quicksave", new MenuShortcut(KeyEvent.VK_S));
         MenuItem loadFile = new MenuItem("Load save file", new MenuShortcut(KeyEvent.VK_L, true));
         quickSave.addActionListener((ActionEvent e) -> {
@@ -91,6 +94,7 @@ class MainMenuBar extends MenuBar {
             gameBoy.start();
         });
 
+        /* ポーズ */
         MenuItem pause = new MenuItem("Pause", new MenuShortcut(KeyEvent.VK_P));
         pause.addActionListener((ActionEvent e) -> {
             if(!gameBoy.paused) {
@@ -369,6 +373,8 @@ public class GameBoy extends JFrame{
     public int getClocks() {
         return numClocks;
     }
+
+    /* ちらつきを抑えるための同期処理 */
     
     public void clockTick(int ticks) {
         numClocks += ticks;
